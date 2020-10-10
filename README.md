@@ -1,3 +1,22 @@
+Jogo da velha (tutorial) e Sudoku em React.
+
+No site do React tem um tutorial para criar um jogo da velha, bem interessante para consolidar alguns conceitos de estado, atualização de componentes e ciclo de vida. Aproveitei o embalo e criei um joguinho sudoku. A aplicação inicia em uma página de seleção, e direciona para um, ou outro.
+
+No final do tutorial (joguinho da velha) só inclui o armazenamento das posições das casas vencedoras para inserir uma cor na respectivas casas quando alguém vence.
+
+Sobre o Sudoku - Utilizei conceitos de matrizes para armazenar os valores e posições e para fazer as verificações relativas as regras do jogo, rearranjando os dados em linhas e colunas, além das nove áreas quadradas que compõe o "tabuleiro" do jogo.
+
+Lembrando, a área do jogo é composta por nova quadrados (3x3), com nove lacunas cada (3x3), que recebem valores de 1 a 9.
+A lógica de verificação deve confirmar que cada linha, coluna e quadrado tenha todas as lacunas preenchidas, sem repetir números e somando 45. Quando todas as linhas, colunas e quadrados satisfazem essas regras o jogo está ganho.
+
+Para resolver isso armazenei os valores em um array e as posições matriciais [i, j] em outro de mesmo formato. A array de valores passa pela verificação e retorna um array booleano, que então filtra o array de posições.
+
+As soluções (setups iniciais, números fixos) foram retiradas de: http://www.sudoku.org.uk/MMPackSolutions.asp;
+
+
+
+Readme do React-------------
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

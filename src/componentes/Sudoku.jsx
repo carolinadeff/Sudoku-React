@@ -1,11 +1,11 @@
 import React from "react";
 import solucoes from './SolucoesSudoku'
 
-function Square(props) {
+function SquareMutavel(props) {
   const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   return (
     <select
-      style={{ width: "40px", height: "40px", background: props.color }}
+      style={{ width: "40px", height: "40px", background: props.color}}
       value={props.value}
       onChange={(e) => props.onChange(e.target.value)}
     >
@@ -17,33 +17,68 @@ function Square(props) {
   );
 }
 
+function SquareFixo(props){
+  return (
+    <div
+      style={{ 
+        width: "40px", 
+        height: "40px", 
+        background: props.color, 
+        color: "#5c3d3d", 
+        display: "inline-block", 
+        boxSizing:"border-box",
+        border: "black thin solid",
+        textAlign: "center",
+      }}
+    >
+      <p>{props.value}</p>
+    </div>
+  );
+} 
+
+function Square(props){
+  if (props.tipo !== 0){
+    return (
+    <SquareFixo
+      value={props.value}
+      color={props.color}
+    />)
+  }else{
+    return (
+    <SquareMutavel 
+      value={props.value}
+      onChange={(value) => props.onChange(value)}
+      color={props.color}
+    />)
+  }
+}
+
 class Sudoku extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       squares: solucoes[aleatorioInteiro(1,20)],
     };
-  }
-
-  componentDidMount(){
-    const setupInicial = 
-
+    this.tipos = this.state.squares.slice()
   }
 
   renderSquare(j, i) {
     let color = "#ffffcc";
+
     filtroConjuntosCompletos(this.state.squares).forEach(lista => {
       lista.forEach(par => {
         if (par[0] === j & par[1] === i) {
           color = "#66cc88"
       }})
     })
+    
     return (
       <Square
         key={[j,i]}
         value={this.state.squares[j][i]}
         onChange={(value) => this.onChange(value,j,i)}
         color={color}
+        tipo={this.tipos[j][i]}
       />
     );
   }
@@ -60,10 +95,10 @@ class Sudoku extends React.Component {
   renderLargeSquare(j) {
     const lista = [0, 1, 2];
     return (
-      <div style={{ display: "inline-block", border: "thin solid black" }}>
+      <div style={{border: "thin solid black" }}>
         {lista.map((item, i) => {
           return (
-            <div className="board-row" key={i}>
+            <div style={{display: "flex"}} className="board-row" key={i}>
               {lista.map((itemInterno, iInterno) => {
                 return this.renderSquare(j, 3 * i + iInterno);
               })}
@@ -80,10 +115,10 @@ class Sudoku extends React.Component {
     return (
       <>
       <h3>{mensagem}</h3>
-      <div>
+      <div style={{display:"flex", flexDirection:"column"}}>
         {lista.map((item, i) => {
           return (
-            <div className="board-row" key={i}>
+            <div className="board-row" key={i} style={{display:"flex"}}>
               {lista.map((itemInterno, iInterno) => {
                 return <span key={iInterno}>{this.renderLargeSquare(3 * i + iInterno)}</span>;
               })}
@@ -145,7 +180,7 @@ function verificacao(lista){
 
 
 
-function listaPosicoes() {
+function listaPosicoes(){
   const listaPosicoes = []
   let item = []
   //quadrados:
@@ -156,12 +191,18 @@ function listaPosicoes() {
     listaPosicoes.push(item);
     item = []
   }
-  return [...listaPosicoes, ...geracaoLinhas(listaPosicoes)]
+  return listaPosicoes
 }
+
+function listaTodasPosicoes() {
+  return [...listaPosicoes(), ...geracaoLinhas(listaPosicoes())]
+}
+
+
 
 function filtroConjuntosCompletos(lista){
   const listaVerificada = verificacao(lista)
-  let listaConjuntosCompletos = listaPosicoes().filter((item, i) => listaVerificada[i])
+  let listaConjuntosCompletos = listaTodasPosicoes().filter((item, i) => listaVerificada[i])
   listaConjuntosCompletos.map(element => {
     return element.toString()
   })

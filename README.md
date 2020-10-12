@@ -13,7 +13,9 @@ Para resolver isso armazenei os valores em um array e as posições matriciais [
 
 As soluções (setups iniciais, números fixos) foram retiradas de: http://www.sudoku.org.uk/MMPackSolutions.asp;
 
-![](https://imgur.com/a/Q0m5MZd)
+![](https://i.imgur.com/iJXtAhw.jpg)
+![](https://i.imgur.com/94oBWpZ.jpg)
+![](https://i.imgur.com/MLf0du3.jpg)
 
 
 Readme do React-------------

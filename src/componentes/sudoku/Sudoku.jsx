@@ -8,8 +8,16 @@ class Sudoku extends React.Component {
     super(props);
     this.state = {
       squares: solucoes[aleatorioInteiro(1, solucoes.length)],
-    };
+    }
     this.tipos = this.state.squares.slice();
+  }
+
+  reiniciar() {
+    const squares = solucoes[aleatorioInteiro(1, solucoes.length)]
+    this.setState({
+      squares: squares,
+    });
+    this.tipos = squares
   }
 
   onChange(value, j, i) {
@@ -26,28 +34,30 @@ class Sudoku extends React.Component {
       : "";
     const lista = [0, 1, 2];
     return (
-      <>
-        <h3>{mensagem}</h3>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          {lista.map((item, i) => {
-            return (
-              <div className="board-row" key={i} style={{ display: "flex" }}>
-                {lista.map((itemInterno, iInterno) => {
-                  return (
-                    <LargeSquare
-                      key={iInterno}
-                      j={3 * i + iInterno}
-                      onChange={(value, j, i) => this.onChange(value, j, i)}
-                      squares={this.state.squares}
-                      tipos={this.tipos}
-                    />
-                  );
-                })}
-              </div>
-            );
-          })}
+
+        <div>
+          <h3>{mensagem}</h3>
+          <button onClick={this.reiniciar.bind(this)} style={{marginBottom:"10px"}}>Reiniciar Jogo</button>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {lista.map((item, i) => {
+              return (
+                <div className="board-row" key={i} style={{ display: "flex" }}>
+                  {lista.map((itemInterno, iInterno) => {
+                    return (
+                      <LargeSquare
+                        key={iInterno}
+                        j={3 * i + iInterno}
+                        onChange={(value, j, i) => this.onChange(value, j, i)}
+                        squares={this.state.squares}
+                        tipos={this.tipos}
+                      />
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </>
     );
   }
 }

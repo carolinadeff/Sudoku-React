@@ -47,7 +47,7 @@ class JogoDaVelha extends React.Component {
     const [winner, winningPositions] = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
-      const desc = move ? "Go to move #" + move : "Go to game start";
+      const desc = move ? "Ir para a jogada #" + move : "Reiniciar jogo";
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -58,9 +58,9 @@ class JogoDaVelha extends React.Component {
     let status;
 
     if (winner) {
-      status = "Winner: " + winner;
+      status = "Vencedor: " + winner;
     } else {
-      status = `Next player: ${this.state.XIsNext ? "X" : "O"}`;
+      status = `Próximo jogador: ${this.state.XIsNext ? "X" : "O"}`;
     }
 
     return (

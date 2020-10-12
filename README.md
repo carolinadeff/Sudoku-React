@@ -13,7 +13,7 @@ Para resolver isso armazenei os valores em um array e as posições matriciais [
 
 As soluções (setups iniciais, números fixos) foram retiradas de: http://www.sudoku.org.uk/MMPackSolutions.asp;
 
-<div style="display:flex align-items:flex-start">
+<div style={"display":"flex", "align-items":"flex-start"}>
 <img src="https://i.imgur.com/iJXtAhw.jpg" width="300" />
 <img src="https://i.imgur.com/94oBWpZ.jpg" width="300" />
 <img src="https://i.imgur.com/MLf0du3.jpg" width="300" />

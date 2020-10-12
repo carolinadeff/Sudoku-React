@@ -15,8 +15,8 @@ As soluções (setups iniciais, números fixos) foram retiradas de: http://www.s
 
 
 <img src="https://i.imgur.com/iJXtAhw.jpg" width="300" style="display:inline"/>
-<img src="https://i.imgur.com/94oBWpZ.jpg" width="300" style={display:"inline"}/>
-<img src="https://i.imgur.com/MLf0du3.jpg" width="300" style={display:"inline"}/>
+<img src="https://i.imgur.com/94oBWpZ.jpg" width="300" style="display:inline"/>
+<img src="https://i.imgur.com/MLf0du3.jpg" width="300" style="display:inline"/>
 
 
 Readme do React-------------
